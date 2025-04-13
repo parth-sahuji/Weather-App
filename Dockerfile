@@ -1,13 +1,13 @@
-# Use official Tomcat image
+# Use official Tomcat image with JDK 17
 FROM tomcat:9.0-jdk17
 
-# Clean default apps
+# Clean default webapps (like ROOT)
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# ✅ Copy your JSP/HTML files to Tomcat's webapps/ROOT
-COPY ./MyWeatherApp/WebContent/ /usr/local/tomcat/webapps/ROOT/
+# Copy your project files (like WebContent folder) into Tomcat’s ROOT
+COPY ./src/main/webapp/ /usr/local/tomcat/webapps/ROOT/
 
-# Expose port
+# Expose port 8080
 EXPOSE 8080
 
 # Run Tomcat
